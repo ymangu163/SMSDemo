@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">SMSDemo</string>
+    <string name="user_name">用户名</string>
+    <string name="user_pwd">密&#160;&#160;&#160;&#160;码</string>
+
+    <string name="login">登&#160;&#160;&#160;&#160;录</string>
+    <string name="no_register">还没有帐号，去&#160;&#160;注册</string>
+    <string name="input_pwd">请输入密码</string>
+
+    <string name="string_copied">已复制</string>
+    <string name="register">注册</string>
+
+
 </resources>

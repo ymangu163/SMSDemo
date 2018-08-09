@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NoActionBarAppTheme" parent="AppTheme">
+        <!-- 全屏、无标题栏、状态栏透明 -->
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
 </resources>
