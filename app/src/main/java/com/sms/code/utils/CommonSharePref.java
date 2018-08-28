@@ -16,6 +16,7 @@ public class CommonSharePref {
     private final String FREENET_SHAREPREFERENCE = "common_sharepreference";
 
     private final String KEY_LOGIN_NAME = "key_login_name";
+    private final String KEY_LOGIN_TOKEN = "key_login_token";
 
 
     /************************结束定义 KEY*****************************/
@@ -83,4 +84,11 @@ public class CommonSharePref {
        return getString(KEY_LOGIN_NAME);
     }
 
+    public void setToken(String token) {
+        putString(KEY_LOGIN_TOKEN, token);
+    }
+
+    public String getToken() {
+        return getString(KEY_LOGIN_TOKEN);
+    }
 }

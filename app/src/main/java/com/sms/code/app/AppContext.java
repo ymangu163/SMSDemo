@@ -17,15 +17,22 @@ import io.fabric.sdk.android.Fabric;
  */
 
 public class AppContext extends Application {
+    private static AppContext mContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext = this;
+
         Crashlytics crashlyticsKit = new Crashlytics.Builder()
                 .core(new CrashlyticsCore.Builder().disabled(BuildConfig.DEBUG).build())
                 .build();
         Fabric.with(this,  new Answers(), crashlyticsKit);
 
 
+    }
+
+    public static AppContext getContext() {
+        return mContext;
     }
 }

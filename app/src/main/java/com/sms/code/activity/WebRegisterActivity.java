@@ -9,6 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.sms.code.R;
+import com.sms.code.utils.ToastUtils;
 
 /**
  * File description
@@ -17,7 +18,7 @@ import com.sms.code.R;
  * @date 2018/8/7
  */
 
-public class RegisterActivity extends BaseActivity {
+public class WebRegisterActivity extends BaseActivity {
 
     private WebView mWebView;
 
@@ -53,14 +54,19 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        String myUrl = "http://www.xunma.net/register.html?refer_id=145945";
+        String myUrl = "http://www.66yzm.com/index/register/register?refer_id=50801";
         mWebView.loadUrl(myUrl);
         mWebView.setWebChromeClient(new WebChromeClient());
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
+                if (url.contains("/login")) {
+                    finish();
+                    ToastUtils.showToastForShort(WebRegisterActivity.this, "注册成功！");
+                } else {
+                    view.loadUrl(url);
+                }
                 return true;
             }
         });

@@ -10,5 +10,7 @@
     <string name="string_copied">已复制</string>
     <string name="register">注册</string>
 
-
+    <string name="tab_one">接&#160;码</string>
+    <string name="tab_three">我&#160;的</string>
+    <string name="verify_code">验证码：</string>
 </resources>

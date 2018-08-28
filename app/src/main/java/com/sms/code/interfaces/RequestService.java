@@ -1,5 +1,7 @@
 package com.sms.code.interfaces;
 
+import com.sms.code.bean.TokenBean;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -14,8 +16,8 @@ import retrofit2.http.Query;
 public interface RequestService {
 
 
-    @GET("Login")
-    Call<String> login(@Query("uName") String name, @Query("pWord") String pwd);
+    @GET("admin/dengl")
+    Call<TokenBean> login(@Query("zhanghao") String name, @Query("mima") String pwd);
 
 
 }

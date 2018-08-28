@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <View
+        android:id="@+id/code_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_height"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/code_search_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/search_height"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/shape_gray_corner"
+        app:layout_constraintBottom_toBottomOf="@+id/code_header"
+        app:layout_constraintTop_toTopOf="@+id/code_header" />
+
+    <ImageView
+        android:id="@+id/code_search_iv"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@+id/code_search_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/code_search_view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="搜索项目"
+        android:textColor="#dbdbdb"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/code_search_view"
+        app:layout_constraintLeft_toRightOf="@+id/code_search_iv"
+        app:layout_constraintTop_toTopOf="@+id/code_search_view" />
+
+
+    <TextView
+        android:id="@+id/code_project_tile_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_item_height"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:gravity="center_vertical"
+        android:text="项目名称："
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toTopOf="@+id/code_get_phone_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_header" />
+
+    <TextView
+        android:id="@+id/code_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/code_item_height"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toBottomOf="@+id/code_project_tile_tv"
+        app:layout_constraintLeft_toRightOf="@+id/code_project_tile_tv"
+        app:layout_constraintTop_toTopOf="@+id/code_project_tile_tv" />
+
+    <TextView
+        android:id="@+id/code_special_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:background="@drawable/shape_gray_corner"
+        android:gravity="center"
+        android:paddingEnd="@dimen/code_action_padding"
+        android:paddingStart="@dimen/code_action_padding"
+        android:text="指定号码"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toBottomOf="@+id/code_get_phone_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/code_get_phone_tv" />
+
+    <TextView
+        android:id="@+id/code_get_phone_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:background="@drawable/shape_gray_corner"
+        android:gravity="center"
+        android:paddingEnd="@dimen/code_action_padding"
+        android:paddingStart="@dimen/code_action_padding"
+        android:text="获取手机号"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toTopOf="@+id/code_phone_title"
+        app:layout_constraintRight_toLeftOf="@+id/code_special_tv"
+        app:layout_constraintTop_toBottomOf="@+id/code_project_tile_tv" />
+
+    <CheckBox
+        android:id="@+id/code_phone_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/code_get_phone_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/code_get_phone_tv" />
+
+    <TextView
+        android:id="@+id/code_mask_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="屏蔽虚拟号码"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toBottomOf="@+id/code_get_phone_tv"
+        app:layout_constraintLeft_toRightOf="@+id/code_phone_check"
+        app:layout_constraintTop_toTopOf="@+id/code_get_phone_tv" />
+
+    <TextView
+        android:id="@+id/code_phone_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_item_height"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:gravity="center_vertical"
+        android:text="手机号："
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toTopOf="@+id/code_msg_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_get_phone_tv" />
+
+    <TextView
+        android:id="@+id/code_number_tv"
+        android:layout_width="140dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/shape_code_msg"
+        android:gravity="center_vertical"
+        android:textColor="@color/jike_text"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toBottomOf="@+id/code_phone_title"
+        app:layout_constraintLeft_toRightOf="@+id/code_phone_title"
+        app:layout_constraintTop_toTopOf="@+id/code_phone_title" />
+
+    <TextView
+        android:id="@+id/code_copy_phone_tv"
+        android:layout_width="80dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:background="@drawable/shape_gray_corner"
+        android:gravity="center"
+        android:text="复制"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toBottomOf="@+id/code_number_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/code_number_tv" />
+
+    <EditText
+        android:id="@+id/code_special_et"
+        android:layout_width="140dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:background="@drawable/shape_code_msg"
+        android:cursorVisible="true"
+        android:gravity="center_vertical"
+        android:hint="请输入手机号"
+        android:paddingStart="10dp"
+        android:textColor="@color/jike_text"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/code_phone_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/code_phone_title" />
+
+    <TextView
+        android:id="@+id/code_get_verify_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:background="@drawable/shape_gray_corner"
+        android:paddingLeft="@dimen/code_action_padding"
+        android:paddingRight="@dimen/code_action_padding"
+        android:text="获取验证码"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/code_phone_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/code_phone_title" />
+
+    <TextView
+        android:id="@+id/code_msg_tv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_code_msg"
+        android:padding="8dp"
+        android:text="等待短信中..."
+        android:textColor="@color/jike_text"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toTopOf="@+id/code_verify_title"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_phone_title" />
+
+    <TextView
+        android:id="@+id/code_verify_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_item_height"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:text="@string/verify_code"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toTopOf="@+id/code_release_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/code_msg_tv" />
+
+    <TextView
+        android:id="@+id/code_verify_tv"
+        android:layout_width="140dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/shape_code_msg"
+        app:layout_constraintBottom_toBottomOf="@+id/code_verify_title"
+        app:layout_constraintLeft_toRightOf="@+id/code_verify_title"
+        app:layout_constraintTop_toTopOf="@+id/code_verify_title" />
+
+    <TextView
+        android:id="@+id/code_copy_verify_tv"
+        android:layout_width="80dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:background="@drawable/shape_gray_corner"
+        android:gravity="center"
+        android:text="复制"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toBottomOf="@+id/code_verify_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/code_verify_title"
+
+        />
+
+    <TextView
+        android:id="@+id/code_release_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:background="@drawable/shape_gray_corner"
+        android:gravity="center"
+        android:paddingEnd="@dimen/code_action_padding"
+        android:paddingStart="@dimen/code_action_padding"
+        android:text="释放手机号"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/code_black_tv"
+        app:layout_constraintTop_toBottomOf="@+id/code_verify_tv" />
+
+    <TextView
+        android:id="@+id/code_black_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:background="@drawable/shape_gray_corner"
+        android:gravity="center"
+        android:paddingEnd="@dimen/code_action_padding"
+        android:paddingStart="@dimen/code_action_padding"
+        android:text="加入黑名单"
+        android:textColor="@color/jike_text"
+        android:textSize="@dimen/code_text"
+        app:layout_constraintBottom_toBottomOf="@+id/code_release_tv"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/code_release_tv"
+
+        />
+
+
+</android.support.constraint.ConstraintLayout>

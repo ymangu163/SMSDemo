@@ -9,13 +9,15 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sms.code.R;
+import com.sms.code.app.AppContext;
+import com.sms.code.bean.TokenBean;
 import com.sms.code.engine.ApiAgnet;
+import com.sms.code.utils.CommonSharePref;
 import com.sms.code.utils.ToastUtils;
 
 import retrofit2.Call;
@@ -42,7 +44,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void initViews() {
-
         mNameEt = findViewById(R.id.login_name_et);
         mPwdEt = findViewById(R.id.login_pwd_et);
         mSubmitTv = findViewById(R.id.login_submit_tv);
@@ -101,16 +102,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             return;
         }
 
-        Call<String> login = ApiAgnet.getApiService().login(name, pwdString);
-        login.enqueue(new Callback<String>() {
+        Call<TokenBean> login = ApiAgnet.getApiService().login(name, pwdString);
+        login.enqueue(new Callback<TokenBean>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                Log.e("gao", response.body());
+            public void onResponse(Call<TokenBean> call, Response<TokenBean> response) {
+                if (response.code() == 200) {
+                    TokenBean bean = response.body();
+                    CommonSharePref.getInstance(AppContext.getContext()).setToken(bean.getToken());
+                }
+                ToastUtils.showToastForShort(AppContext.getContext(), "登录成功");
+                finish();
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-
+            public void onFailure(Call<TokenBean> call, Throwable t) {
+                ToastUtils.showToastForShort(AppContext.getContext(), "登录失败，请重试");
             }
         });
 
@@ -119,7 +125,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private class TextClick extends ClickableSpan {
         @Override
         public void onClick(View widget) {
-            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            startActivity(new Intent(LoginActivity.this, WebRegisterActivity.class));
         }
 
         @Override

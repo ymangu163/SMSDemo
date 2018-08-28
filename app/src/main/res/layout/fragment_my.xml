@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_bg"
+    android:orientation="vertical">
+
+    <com.sms.code.views.ActionView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_height"
+        app:title="我的" />
+
+
+    <TextView
+        android:id="@+id/my_mine_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="账户信息"
+        android:textColor="@color/jike_text"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/my_help_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="帮助中心"
+        android:textColor="@color/jike_text"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/my_share_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:text="分         享"
+        android:textColor="@color/jike_text"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/my_about_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="关于我们"
+        android:textColor="@color/jike_text"
+        android:textSize="16sp" />
+
+</LinearLayout>
