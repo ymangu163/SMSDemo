@@ -14,10 +14,16 @@
     <color name="gray_bottom">#999999</color>
     <color name="blue_bottom">#1EAAF1</color>
     <color name="gray_bg">#ECEFF1</color>
+    <color name="gray_bg_press">#E0E0E0</color>
+    <color name="gray_bg_80">#CCECEFF1</color>
 
     <color name="transparent">#00000000</color>
     <color name="color_gray_light">#e6e6e6</color>
 
     <color name="golden">#FEE237</color>
     <color name="golden_80">#CCFEE237</color>
+
+    <color name="action_text">#424242</color>
+    <color name="btn_jike">#03A9F4</color>
+    <color name="btn_jike_80">#CC03A9F4</color>
 </resources>

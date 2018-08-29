@@ -15,4 +15,14 @@
 
     </style>
 
+    <style name="CodeBtnStyle" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/btn_jike</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="actionStyle">
+        <item name='android:textColor'>@color/action_text</item>
+        <item name='android:textSize'>@dimen/code_text</item>
+    </style>
+
 </resources>

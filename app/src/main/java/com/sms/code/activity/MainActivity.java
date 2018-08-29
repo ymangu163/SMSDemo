@@ -1,17 +1,14 @@
 package com.sms.code.activity;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.MenuItem;
 
 import com.sms.code.R;
 import com.sms.code.adapter.ViewPagerAdapter;
 import com.sms.code.fragment.CodeFragment;
 import com.sms.code.fragment.MyInfoFragment;
-import com.sms.code.utils.CommonSharePref;
 
 /**
  * File description
@@ -39,13 +36,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public void initData() {
 
-    }
-
-    private void gotoLogin() {
-        String token = CommonSharePref.getInstance(this).getToken();
-        if (TextUtils.isEmpty(token.trim())) {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        }
     }
 
     private void initListener() {
