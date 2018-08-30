@@ -22,14 +22,14 @@ import retrofit2.http.Query;
 public interface RequestService {
 
 
-    @GET("dengl")
+    @GET("api/admin/dengl")
     Call<TokenBean> login(@Query("zhanghao") String name, @Query("mima") String pwd);
 
-    @POST("shousxiangmu")
+    @POST("api/admin/shousxiangmu")
     @FormUrlEncoded
     Call<List<ProjectBean>> queryProject(@Field("linpai") String token, @Field("xiangmu") String name);
 
-    @POST("getmobile")
+    @POST("api/admin/getmobile")
     @FormUrlEncoded
     Call<String> getPhoneNumber(@Field("linpai") String token, @Field("itemid") int id,
                                 @Field("xunihaoduan") int haoduan);

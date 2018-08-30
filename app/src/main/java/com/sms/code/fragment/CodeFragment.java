@@ -16,9 +16,10 @@ import android.widget.TextView;
 
 import com.sms.code.R;
 import com.sms.code.activity.LoginActivity;
-import com.sms.code.activity.SearchActivity;
+import com.sms.code.activity.RechargeActivity;
 import com.sms.code.app.AppContext;
 import com.sms.code.bean.ProjectBean;
+import com.sms.code.dialog.RechargeDialog;
 import com.sms.code.engine.ApiAgnet;
 import com.sms.code.utils.CommonSharePref;
 import com.sms.code.utils.ToastUtils;
@@ -49,6 +50,7 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
     private TextView mGetVerifyTv;
     private EditText mPhoneEdit;
     private ProjectBean mProjectBean;
+    private RechargeDialog mRechargeDialog;
 
     @Nullable
     @Override
@@ -88,7 +90,7 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
             if (TextUtils.isEmpty(token.trim())) {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             } else {
-                startActivityForResult(new Intent(getActivity(), SearchActivity.class), REQUEST_CODE_SEARCH);
+                startActivityForResult(new Intent(getActivity(), RechargeActivity.class), REQUEST_CODE_SEARCH);
             }
         } else if (vId == R.id.code_get_phone_tv) {
             getPhoneNumber();
@@ -96,6 +98,9 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void getPhoneNumber() {
+        if (mProjectBean == null) {
+            return;
+        }
         Call<String> project = ApiAgnet.getApiService().getPhoneNumber(CommonSharePref.getInstance(AppContext.getContext()).getToken()
                 , mProjectBean.getId(), 1);
         project.enqueue(new Callback<String>() {
@@ -130,6 +135,12 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
                     break;
                 case 9:
                     ToastUtils.showToastForShort(AppContext.getContext(), "余额不足");
+                    if (mRechargeDialog == null) {
+                        mRechargeDialog = new RechargeDialog(getActivity());
+                    }
+                    if (!mRechargeDialog.isShowing()) {
+                        mRechargeDialog.show();
+                    }
                     break;
                 case 7:
                     ToastUtils.showToastForShort(AppContext.getContext(), "无手机号该项目封6分钟才可查询");
@@ -137,8 +148,8 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
                 case 19:
                     ToastUtils.showToastForShort(AppContext.getContext(), "条件太多无号码 ");
                     break;
-                 default:
-                     break;
+                default:
+                    break;
             }
         } else {
             mNumberTv.setText(phoneNumber);
@@ -150,14 +161,12 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_SEARCH) {
             if (resultCode == Activity.RESULT_OK) {
-               Object object = data.getSerializableExtra("project");
-               if (object != null && object instanceof ProjectBean) {
-                   mProjectBean = (ProjectBean) object;
-                   mNameTv.setText(mProjectBean.getName());
-               }
+                Object object = data.getSerializableExtra("project");
+                if (object != null && object instanceof ProjectBean) {
+                    mProjectBean = (ProjectBean) object;
+                    mNameTv.setText(mProjectBean.getName());
+                }
             }
         }
-
-
     }
 }

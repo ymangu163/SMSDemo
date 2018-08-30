@@ -3,6 +3,7 @@
     <declare-styleable name="ActionView">
         <attr name="title" format="string" />
         <attr name="icon" format="reference" />
-        <attr name="icon_visibe" format="boolean" />
+        <attr name="icon_visible" format="boolean" />
+        <attr name="back_visible" format="boolean" />
     </declare-styleable>
 </resources>

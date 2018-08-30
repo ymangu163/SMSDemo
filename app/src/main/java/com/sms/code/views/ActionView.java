@@ -55,12 +55,16 @@ public class ActionView extends RelativeLayout implements View.OnClickListener {
         TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.ActionView);
         mTilte = typedArray.getString(R.styleable.ActionView_title);
         int iconId = typedArray.getResourceId(R.styleable.ActionView_icon, R.drawable.ic_red_packet);
-        boolean iconVisible = typedArray.getBoolean(R.styleable.ActionView_icon_visibe, true);
+        boolean iconVisible = typedArray.getBoolean(R.styleable.ActionView_icon_visible, true);
+        boolean backVisible = typedArray.getBoolean(R.styleable.ActionView_back_visible, true);
         typedArray.recycle();
         mTitleTv.setText(mTilte);
         mPacketIv.setImageResource(iconId);
         if (!iconVisible) {
             mPacketIv.setVisibility(View.GONE);
+        }
+        if (!backVisible) {
+            mBackIv.setVisibility(View.GONE);
         }
     }
 

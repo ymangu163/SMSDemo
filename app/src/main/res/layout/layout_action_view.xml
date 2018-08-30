@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:textColor="@color/jike_text"
         android:textSize="16sp"
-        tools:text="注册"
         android:layout_centerInParent="true"
         />
 

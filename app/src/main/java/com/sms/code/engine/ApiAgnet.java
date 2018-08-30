@@ -14,7 +14,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  */
 
 public class ApiAgnet {
-    private final static String BASE_URL = "http://www.66yzm.com/api/admin/";
+    private final static String BASE_URL = "http://www.66yzm.com/";
     private static RequestService mRequestService;
 
 

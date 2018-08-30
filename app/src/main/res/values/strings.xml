@@ -14,4 +14,10 @@
     <string name="tab_three">我&#160;的</string>
     <string name="verify_code">验证码：</string>
     <string name="search_result">搜索到&#160;%d&#160;个项目：</string>
+    <string name="recharge_desc_1">第一步：使用支付宝转账给 a1221331441@163.com 梁程涵</string>
+    <string name="recharge_desc_2">最低充值金额1元,充值立即到账(请用多少充多少, 用不完的余额没有特殊原因不能退款)</string>
+    <string name="recharge_desc_3">第二步：成功之后会生成一个订单号，复制这个订单号到上面的订单号框内点击提交\n举例：20180825200040011100670054187161（长度是28位或32位请仔细核对输入）</string>
+    <string name="recharge_desc_4">第三步：提交成功后一分钟内就会充值成功，进入“我的”&#8212;&#8212;“账户信息”查看</string>
+
+
 </resources>

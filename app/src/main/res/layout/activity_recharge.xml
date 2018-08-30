@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.sms.code.views.ActionView
+        android:id="@+id/recharge_action"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginTop="@dimen/status_bar_height"
+        app:icon_visible="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="充&#160;值" />
+
+    <View
+        android:id="@+id/recharge_space_1"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/gray_bg"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_action" />
+
+    <TextView
+        android:id="@+id/recharge_order_title"
+        style="@style/actionStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_item_height"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="订单号："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_space_1" />
+
+    <EditText
+        android:id="@+id/recharge_order_et"
+        style="@style/actionStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:background="@drawable/shape_code_msg"
+        android:cursorVisible="true"
+        android:gravity="center_vertical"
+        android:hint="请输入订单号"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recharge_order_title"
+        app:layout_constraintLeft_toRightOf="@+id/recharge_order_title"
+        app:layout_constraintTop_toTopOf="@+id/recharge_order_title"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.7" />
+
+    <TextView
+        android:id="@+id/recharge_verify_title"
+        style="@style/actionStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/code_item_height"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:gravity="center"
+        android:text="验证码："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_order_title" />
+
+    <EditText
+        android:id="@+id/recharge_verify_et"
+        style="@style/actionStyle"
+        android:layout_width="100dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:background="@drawable/shape_code_msg"
+        android:cursorVisible="true"
+        android:gravity="center_vertical"
+        android:paddingStart="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recharge_verify_title"
+        app:layout_constraintLeft_toRightOf="@+id/recharge_verify_title"
+        app:layout_constraintTop_toTopOf="@+id/recharge_verify_title" />
+
+    <ImageView
+        android:id="@+id/recharge_verify_iv"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_captcha"
+        app:layout_constraintBottom_toBottomOf="@+id/recharge_verify_title"
+        app:layout_constraintLeft_toRightOf="@+id/recharge_verify_et"
+        app:layout_constraintTop_toTopOf="@+id/recharge_verify_title"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.41"
+        />
+
+    <TextView
+        android:id="@+id/recharge_submit_tv"
+        style="@style/actionStyle"
+        android:layout_width="100dp"
+        android:layout_height="@dimen/code_action_height"
+        android:layout_marginTop="@dimen/code_margin_start"
+        android:background="@drawable/selector_recommend"
+        android:gravity="center"
+        android:text="提&#160;&#160;交"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_verify_title" />
+
+    <TextView
+        android:id="@+id/recharge_desc_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:layout_marginTop="@dimen/code_margin_start"
+        android:text="支付宝充值说明："
+        android:textColor="@color/jike_text"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_submit_tv"
+        app:layout_constraintBottom_toTopOf="@+id/recharge_desc_tv1"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+    <TextView
+        android:id="@+id/recharge_desc_tv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:text="@string/recharge_desc_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_desc_title"
+        android:textColor="@color/jike_text"
+        android:lineSpacingMultiplier="1.2"
+        android:textIsSelectable="true"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/recharge_desc_tv2"
+        />
+
+    <TextView
+        android:id="@+id/recharge_desc_tv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:text="@string/recharge_desc_2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_desc_tv1"
+        android:textColor="@color/white"
+        android:lineSpacingMultiplier="1.2"
+        android:background="@color/recharge_desc_2"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/recharge_desc_tv3"
+        />
+    <TextView
+        android:id="@+id/recharge_desc_tv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:text="@string/recharge_desc_3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_desc_tv2"
+        android:textColor="@color/jike_text"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/recharge_desc_tv4"
+        />
+    <TextView
+        android:id="@+id/recharge_desc_tv4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/code_margin_start"
+        android:layout_marginStart="@dimen/code_margin_start"
+        android:text="@string/recharge_desc_4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_desc_tv3"
+        android:textColor="@color/jike_text"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</android.support.constraint.ConstraintLayout>

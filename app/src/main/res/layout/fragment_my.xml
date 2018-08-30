@@ -9,7 +9,10 @@
     <com.sms.code.views.ActionView
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_height"
-        app:title="我的" />
+        app:title="我&#160;的"
+        app:icon_visible="false"
+        app:back_visible="false"
+        />
 
 
     <TextView

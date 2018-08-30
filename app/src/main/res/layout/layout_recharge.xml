@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="180dp"
+    android:background="@drawable/shape_white_corner">
+
+    <TextView
+        android:id="@+id/recharge_msg_tv"
+        style="@style/actionStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/code_margin_start"
+        android:layout_marginTop="@dimen/code_margin_start"
+        android:text="您的余额不足，请移步去充值先."
+        app:layout_constraintBottom_toTopOf="@+id/recharge_ok"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recharge_ok"
+        android:layout_width="100dp"
+        android:layout_height="@dimen/code_action_height"
+        android:background="@drawable/selector_recommend"
+        android:gravity="center"
+        android:text="去充值"
+        android:textColor="@color/action_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recharge_msg_tv" />
+</android.support.constraint.ConstraintLayout>

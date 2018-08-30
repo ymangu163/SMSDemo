@@ -46,6 +46,9 @@
             android:windowSoftInputMode="adjustPan|adjustResize|stateAlwaysVisible"
 
             />
+        <activity
+            android:name=".activity.RechargeActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="io.fabric.ApiKey"
