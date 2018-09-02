@@ -23,7 +23,19 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
-        android:text="账户信息"
+        android:text="@string/user_info"
+        android:textColor="@color/jike_text"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/my_msg_history"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="接码记录"
         android:textColor="@color/jike_text"
         android:textSize="16sp" />
 
@@ -49,7 +61,9 @@
         android:paddingStart="16dp"
         android:text="分         享"
         android:textColor="@color/jike_text"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone"
+        />
 
     <TextView
         android:id="@+id/my_about_tv"
@@ -63,4 +77,15 @@
         android:textColor="@color/jike_text"
         android:textSize="16sp" />
 
+    <TextView
+        android:id="@+id/my_logout_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="退 出"
+        android:textColor="@color/jike_text"
+        android:textSize="16sp" />
 </LinearLayout>

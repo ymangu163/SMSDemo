@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray_bg"
+    >
+
+    <LinearLayout
+        android:id="@+id/about_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="100dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingBottom="16dp"
+        >
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/app_name"
+            style="@style/actionStyle"
+            />
+
+        <TextView
+            android:id="@+id/about_us_version_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           style="@style/actionStyle"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        >
+        <TextView
+            android:id="@+id/textViewVersion"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_setting_item"
+            android:text="@string/about_us_check_for_update"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/color_gray_light" />
+
+        <TextView
+            android:id="@+id/privacy_tv"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/privacy_policy"
+            style="@style/actionStyle"
+            android:background="@drawable/selector_setting_item"
+            android:gravity="center"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        style="@style/actionStyle"
+        android:text="服务微信：wonderfully365"
+        android:textIsSelectable="true"
+        android:gravity="center_vertical"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        style="@style/actionStyle"
+        android:text="交流Q群：706220324"
+        android:textIsSelectable="true"
+        android:gravity="center_vertical"
+        />
+
+</LinearLayout>
+
+</LinearLayout>

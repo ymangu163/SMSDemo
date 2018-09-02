@@ -19,5 +19,13 @@
     <string name="recharge_desc_3">第二步：成功之后会生成一个订单号，复制这个订单号到上面的订单号框内点击提交\n举例：20180825200040011100670054187161（长度是28位或32位请仔细核对输入）</string>
     <string name="recharge_desc_4">第三步：提交成功后一分钟内就会充值成功，进入“我的”&#8212;&#8212;“账户信息”查看</string>
 
+    <string name="wait_msg_desc">请复制手机号到您的项目中，并获取验证码。10秒钟后开始查收验证码&#8230;</string>
+    <string name="wait_for_msg">等待短信中&#8230;</string>
+    <string name="user_info">账号信息</string>
+
+    <string name="privacy_policy">隐私协议</string>
+    <string name="about_us_check_for_update">检测升级</string>
+
+
 
 </resources>

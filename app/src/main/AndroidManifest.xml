@@ -50,6 +50,22 @@
             android:name=".activity.RechargeActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.FAQActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.PrivacyPolicyActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="ee5e69c18ef209ed400c116c2af3db5f1ee4db21" />

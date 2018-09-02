@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_height"
+        android:background="@color/white" />
+
+    <com.sms.code.views.ActionView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:icon_visible="false"
+        app:title="帮助中心" />
+
+    <ExpandableListView
+        android:id="@+id/help_expan_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="3dp"
+        android:background="@color/white"
+        android:divider="@null"
+        android:groupIndicator="@null"
+        android:scrollbars="none" />
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package com.sms.code.interfaces;
 
 import com.sms.code.bean.ProjectBean;
 import com.sms.code.bean.TokenBean;
+import com.sms.code.bean.UserInfo;
 
 import java.util.List;
 
@@ -35,6 +36,37 @@ public interface RequestService {
                                 @Field("xunihaoduan") int haoduan);
 
 
+    @GET("index/login/index.html")
+    Call<String> index();
+
+    @POST("index/login/index.html")
+    @FormUrlEncoded
+    Call<String> loginIndex(@Field("username") String username, @Field("password") String pwd,
+                            @Field("code") String code, @Field("__token__") String token);
+
+    @GET("index/usertable/chongz.html")
+    Call<String> chongz();
+
+
+    @POST("api/admin/shortmessage")
+    @FormUrlEncoded
+    Call<String> queryMsg(@Field("linpai") String token, @Field("itemid") int id,
+                                @Field("mobile") String mobile);
+
+
+    @POST("api/admin/releaseadd")
+    @FormUrlEncoded
+    Call<String> releasePhone(@Field("linpai") String token);
+
+    @POST("api/admin/blacklist")
+    @FormUrlEncoded
+    Call<String> blacklist(@Field("linpai") String token, @Field("itemid") int id,
+                          @Field("mobile") String mobile);
+
+
+    @POST("api/admin/usercenter")
+    @FormUrlEncoded
+    Call<UserInfo> userInfo(@Field("linpai") String token);
 
 
 }

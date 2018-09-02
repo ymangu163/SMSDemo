@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading_layout"
+    android:layout_width="300dp"
+    android:layout_height="160dp"
+    android:background="@drawable/shape_white_corner"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <TextView
+        android:id="@+id/loading_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="正在处理，请稍等..."
+        android:textColor="@color/jike_text"
+        />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        />
+</LinearLayout>
