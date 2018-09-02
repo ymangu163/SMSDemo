@@ -12,7 +12,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,6 +93,7 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
         mRootView.findViewById(R.id.code_release_tv).setOnClickListener(this);
         mRootView.findViewById(R.id.code_black_tv).setOnClickListener(this);
         mPhoneCopyTv.setOnClickListener(this);
+        mGetVerifyTv.setOnClickListener(this);
     }
 
     @Override
@@ -107,8 +107,11 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
                 startActivityForResult(new Intent(getActivity(), SearchActivity.class), REQUEST_CODE_SEARCH);
             }
         } else if (vId == R.id.code_get_phone_tv) {
-            getPhoneNumber();
-//            parseMsgCode("");
+            if (mPhoneEdit.getVisibility() == View.VISIBLE) {
+                hideSpecialPhone();
+            } else {
+                getPhoneNumber();
+            }
         } else if (vId == R.id.code_copy_phone_tv) {
             String phoneStr = mNumberTv.getText().toString().trim();
             if (TextUtils.isEmpty(phoneStr)) {
@@ -125,22 +128,12 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
             copy2Clipboard(phoneStr);
         } else if (vId == R.id.code_black_tv) {
             blackList();
+        } else if (vId == R.id.code_special_tv) {
+            showSpecialPhone();
+        } else if (vId == R.id.code_get_verify_tv) {
+            queryMsg();
         }
     }
-
-    private void parseDemo() {
-        String content = " <input type=\"hidden\" name=\"__token__\" value=\"ffdf18fe922416e490f5c03ff8ef767f\" />";
-        String compile = ".*__token__.*([A-Za-z0-9]{32}).*";
-        Pattern pattern = Pattern.compile(compile);
-        Matcher matcher = pattern.matcher(content);
-        if (matcher.find()) {
-            if (matcher.groupCount() >= 1) {
-                String result = matcher.group(1);
-                Log.e("gao", result);
-            }
-        }
-    }
-
 
     private void getPhoneNumber() {
         if (mProjectBean == null) {
@@ -200,7 +193,6 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
                 ToastUtils.showToastForShort(AppContext.getContext(), "专属项目与普通项目不兼容");
                 break;
             case 9:
-                ToastUtils.showToastForShort(AppContext.getContext(), "余额不足");
                 if (mRechargeDialog == null) {
                     mRechargeDialog = new RechargeDialog(getActivity());
                 }
@@ -264,11 +256,19 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
     });
 
     private void queryMsg() {
+        if (mProjectBean == null) {
+            return;
+        }
+
         if (mGetMsgStartTime < 10) {
             mGetMsgStartTime = System.currentTimeMillis();
         }
 
-        String phoneStr = mNumberTv.getText().toString().trim();
+        String phoneStr = getPhoneStr();
+        if (TextUtils.isEmpty(phoneStr)) {
+            ToastUtils.showToastForShort(AppContext.getContext(), "手机号不能为空");
+            return;
+        }
         Call<String> project = ApiAgnet.getApiService().queryMsg(CommonSharePref.getInstance(AppContext.getContext()).getToken()
                 , mProjectBean.getId(), phoneStr);
         project.enqueue(new Callback<String>() {
@@ -292,12 +292,30 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    private String getPhoneStr() {
+        String phoneStr = mNumberTv.getText().toString().trim();
+        if (mPhoneEdit.getVisibility() == View.VISIBLE) {
+            phoneStr = mPhoneEdit.getText().toString().trim();
+        }
+        return phoneStr;
+    }
+
     private void haneleVerifyCode(String response) {
         mMsgTv.setText(response);
         mGetMsgTimes++;
         if (response.length() <= 3) {
+            int errorCode = 0;
+            try {
+                errorCode = Integer.valueOf(response);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+
             if (System.currentTimeMillis() - mGetMsgStartTime > 90 * 1000) {
                 mMsgTv.setText("获取失败！请更换号码重试！");
+                return;
+            } else if (errorCode == 18) {
+                mMsgTv.setText("传入手机号错误或以释放 ");
                 return;
             }
             mHandler.sendEmptyMessageDelayed(MSG_QUERY_VERFITY_CODE, 2000);
@@ -356,6 +374,7 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
 
     private void blackList() {
         if (mProjectBean == null) {
+            ToastUtils.showToastForShort(AppContext.getContext(), "请先搜索项目");
             return;
         }
         String phoneStr = mNumberTv.getText().toString().trim();
@@ -384,5 +403,22 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
                 mGetMsgTimes = 0;
             }
         });
+    }
+
+    private void showSpecialPhone() {
+        mPhoneTitleTv.setVisibility(View.INVISIBLE);
+        mNumberTv.setVisibility(View.INVISIBLE);
+        mPhoneCopyTv.setVisibility(View.INVISIBLE);
+        mPhoneEdit.setVisibility(View.VISIBLE);
+        mGetVerifyTv.setVisibility(View.VISIBLE);
+        mPhoneEdit.setText("");
+    }
+
+    private void hideSpecialPhone() {
+        mPhoneTitleTv.setVisibility(View.VISIBLE);
+        mNumberTv.setVisibility(View.VISIBLE);
+        mPhoneCopyTv.setVisibility(View.VISIBLE);
+        mPhoneEdit.setVisibility(View.INVISIBLE);
+        mGetVerifyTv.setVisibility(View.INVISIBLE);
     }
 }

@@ -36,6 +36,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
     private ImageView mVerifyIv;
     private String imgUrl = "http://www.66yzm.com/captcha.html";
     private LoadingDialog mLoadingDialog;
+    private String mIndexToken;
 
     @Override
     public int getLayoutId() {
@@ -50,12 +51,13 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
         TextView submitTv = findViewById(R.id.recharge_submit_tv);
         submitTv.setOnClickListener(this);
         mVerifyIv.setOnClickListener(this);
-        freshVerifyIv();
+
     }
 
     @Override
     public void initData() {
-
+        getIndexToken();
+        freshVerifyIv();
     }
 
     @Override
@@ -91,7 +93,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
         if (!mLoadingDialog.isShowing()) {
             mLoadingDialog.show();
         }
-        getIndexToken();
+        getLoginToken(mIndexToken);
 
     }
 
@@ -110,12 +112,12 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
                 if (response.code() != 200) {
                     return;
                 }
-                String indexToken = parseToken(response.body());
-                if (TextUtils.isEmpty(indexToken)) {
+                mIndexToken = parseToken(response.body());
+                if (TextUtils.isEmpty(mIndexToken)) {
                     ToastUtils.showToastForShort(AppContext.getContext(), "操作失败，请重试");
                     hideDialog();
                 } else {
-                    getLoginToken(indexToken);
+//                    getLoginToken(indexToken);
                 }
             }
 

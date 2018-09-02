@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.sms.code.R;
-import com.sms.code.activity.RechargeActivity;
+import com.sms.code.activity.WebRechargeActivity;
 
 
 /**
@@ -53,7 +53,7 @@ public class RechargeDialog extends AppCompatDialog implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.recharge_ok) {
-            mContext.startActivity(new Intent(mContext, RechargeActivity.class));
+            mContext.startActivity(new Intent(mContext, WebRechargeActivity.class));
             dismiss();
         }
     }

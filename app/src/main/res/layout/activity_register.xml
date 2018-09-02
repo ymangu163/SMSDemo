@@ -12,6 +12,7 @@
         android:background="@color/white" />
 
     <com.sms.code.views.ActionView
+        android:id="@+id/action_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/register"

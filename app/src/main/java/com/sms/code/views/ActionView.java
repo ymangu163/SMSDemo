@@ -68,6 +68,9 @@ public class ActionView extends RelativeLayout implements View.OnClickListener {
         }
     }
 
+    public void setTitle(String title) {
+        mTitleTv.setText(title);
+    }
 
     @Override
     public void onClick(View v) {
