@@ -40,6 +40,20 @@
         android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/my_red_packet"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="领红包"
+        android:textColor="@color/jike_text"
+        android:textSize="16sp"
+        android:visibility="gone"
+        />
+
+    <TextView
         android:id="@+id/my_help_tv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/info_item_height"

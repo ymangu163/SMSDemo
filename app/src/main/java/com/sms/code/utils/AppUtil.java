@@ -35,6 +35,15 @@ public class AppUtil {
         }
     }
 
+    public static boolean isAppInstalled(Context context, String packageName) {
+        try {
+            return context.getPackageManager().getApplicationInfo(packageName, 0) != null;
+        } catch (Throwable e) {
+            return false;
+        }
+    }
+
+
     public static String getJsonFromAssets(Context context, String name) {
         try {
             return readString(context.getAssets().open(name));

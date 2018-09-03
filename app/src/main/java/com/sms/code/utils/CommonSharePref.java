@@ -17,6 +17,7 @@ public class CommonSharePref {
 
     private final String KEY_LOGIN_NAME = "key_login_name";
     private final String KEY_LOGIN_TOKEN = "key_login_token";
+    private final String KEY_UPGRADE_TIME = "key_upgrade_time";
 
 
     /************************结束定义 KEY*****************************/
@@ -90,5 +91,13 @@ public class CommonSharePref {
 
     public String getToken() {
         return getString(KEY_LOGIN_TOKEN);
+    }
+
+    public void setUpgradeTime(long time) {
+        putLong(KEY_UPGRADE_TIME, time);
+    }
+
+    public long getUpgradeTime() {
+        return getLong(KEY_UPGRADE_TIME);
     }
 }

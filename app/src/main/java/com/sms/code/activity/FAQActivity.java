@@ -7,6 +7,8 @@ import com.sms.code.adapter.FaqAdapter;
 import com.sms.code.bean.FaqEntry;
 import com.sms.code.utils.AppUtil;
 import com.sms.code.utils.GsonUtil;
+import com.sms.code.utils.StatConstant;
+import com.sms.code.utils.StatUtil;
 
 import java.util.List;
 
@@ -40,6 +42,6 @@ public class FAQActivity extends BaseActivity {
         String faqJson = AppUtil.getJsonFromAssets(FAQActivity.this,"faq.json");
         List<FaqEntry> faqList = GsonUtil.gson2List(faqJson, FaqEntry.class);
         mFaqAdapter.setFaqList(faqList);
-
+        StatUtil.onEvent(StatConstant.SMS_FAQ);
     }
 }

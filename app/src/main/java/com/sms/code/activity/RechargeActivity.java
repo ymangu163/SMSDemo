@@ -144,7 +144,7 @@ public class RechargeActivity extends BaseActivity implements View.OnClickListen
 
     private void getLoginToken(String indexToken) {
         String verifyCode = mVerifyEt.getText().toString().trim();
-        Call<String> project = ApiAgnet.getApiService().loginIndex("peace", "qqqwwweee",
+        Call<String> project = ApiAgnet.getApiService().loginIndex("", "",
                 verifyCode, indexToken);
         project.enqueue(new Callback<String>() {
             @Override

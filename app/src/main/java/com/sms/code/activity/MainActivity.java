@@ -7,8 +7,19 @@ import android.view.MenuItem;
 
 import com.sms.code.R;
 import com.sms.code.adapter.ViewPagerAdapter;
+import com.sms.code.app.AppContext;
+import com.sms.code.bean.Upgrade;
+import com.sms.code.dialog.UpgradeDialog;
 import com.sms.code.fragment.CodeFragment;
 import com.sms.code.fragment.MyInfoFragment;
+import com.sms.code.utils.AppUtil;
+import com.sms.code.utils.CommonSharePref;
+import com.sms.code.utils.StatConstant;
+import com.sms.code.utils.StatUtil;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
 
 /**
  * File description
@@ -35,7 +46,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Override
     public void initData() {
-
+        checkAppUpdate();
     }
 
     private void initListener() {
@@ -65,6 +76,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 break;
             case 1:
                 mBottomNavigationView.setSelectedItemId(R.id.tab_my);
+                StatUtil.onEvent(StatConstant.SMS_TAB_MY);
                 break;
             default:
                 break;
@@ -92,5 +104,35 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 break;
         }
         return false;
+    }
+
+    private void checkAppUpdate() {
+        if (CommonSharePref.getInstance(this).getUpgradeTime() - System.currentTimeMillis() < 48 * 3600 * 1000) {
+            return;
+        }
+
+        BmobQuery<Upgrade> query = new BmobQuery<Upgrade>();
+        query.getObject("cFho222P", new QueryListener<Upgrade>() {
+
+            @Override
+            public void done(Upgrade bean, BmobException e) {
+                if (e != null) {
+                    return;
+                }
+                int currVerionCode = AppUtil.getVersionCode(AppContext.getContext());
+                if (bean.getVersioncode() > currVerionCode) {
+                    showUpgradeDlg(bean);
+                }
+            }
+        });
+    }
+
+    private void showUpgradeDlg(Upgrade bean) {
+        UpgradeDialog upgradeDialog = new UpgradeDialog(this);
+        upgradeDialog.setDownloadUrl(bean.getDownload());
+        upgradeDialog.setMsgStr(bean.getDescription());
+        upgradeDialog.setCancelable(!bean.isForce());
+        upgradeDialog.show();
+        CommonSharePref.getInstance(this).setUpgradeTime(System.currentTimeMillis());
     }
 }

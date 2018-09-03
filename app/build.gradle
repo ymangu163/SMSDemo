@@ -14,20 +14,47 @@ buildscript {
 
 android {
     compileSdkVersion 27
+
+    def verCode = Integer.parseInt(new Date().format("yyyyMMdd"))
     defaultConfig {
         applicationId "com.sms.code"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 1
+        multiDexEnabled true
+        versionCode verCode
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("./../../candy.jks")
+            storePassword 'Cdnal36ntedr'
+            keyAlias 'candy'
+            keyPassword 'Cdnal36ntedr'
+        }
+        release {
+            storeFile file("./../../candy.jks")
+            storePassword 'Cdnal36ntedr'
+            keyAlias 'candy'
+            keyPassword 'Cdnal36ntedr'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -38,12 +65,24 @@ dependencies {
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
         transitive = true
     }
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-scalars:2.1.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation('com.squareup.retrofit2:retrofit:2.3.0') {
+        exclude group: 'com.squareup.okhttp3'
+    }
+    implementation ('com.squareup.retrofit2:converter-scalars:2.1.0') {
+        exclude group: 'com.squareup.okhttp3'
+    }
+    implementation ('com.squareup.retrofit2:converter-gson:2.3.0') {
+        exclude group: 'com.google.code.gson'
+        exclude group: 'com.squareup.okhttp3'
+    }
+    implementation ('com.squareup.okhttp3:okhttp:3.8.0') {
+        exclude group: 'com.squareup.okio'
+    }
 
     implementation "com.android.support:recyclerview-v7:27.0.2"
     implementation "com.android.support:design:27.0.2"
     implementation 'com.hyman:flowlayout-lib:1.1.2'
     implementation 'com.github.bumptech.glide:glide:3.8.0'
+    implementation ('cn.bmob.android:bmob-sdk:3.6.5')
+    implementation 'cn.bmob.android:http-legacy:1.0'
 }

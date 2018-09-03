@@ -11,6 +11,8 @@ import android.webkit.WebViewClient;
 import com.sms.code.R;
 import com.sms.code.app.AppContext;
 import com.sms.code.utils.DisplayUtil;
+import com.sms.code.utils.StatConstant;
+import com.sms.code.utils.StatUtil;
 import com.sms.code.views.ActionView;
 
 /**
@@ -77,5 +79,6 @@ public class WebRechargeActivity extends BaseActivity {
             }
         });
 
+        StatUtil.onEvent(StatConstant.SMS_RECHARGE);
     }
 }

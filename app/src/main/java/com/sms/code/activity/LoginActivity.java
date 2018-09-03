@@ -18,11 +18,14 @@ import com.sms.code.app.AppContext;
 import com.sms.code.bean.TokenBean;
 import com.sms.code.engine.ApiAgnet;
 import com.sms.code.utils.CommonSharePref;
+import com.sms.code.utils.StatConstant;
+import com.sms.code.utils.StatUtil;
 import com.sms.code.utils.ToastUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 /**
  * File description
@@ -82,7 +85,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     @Override
     public void initData() {
-
+        StatUtil.onEvent(StatConstant.SMS_LOGIN);
     }
 
     @Override
