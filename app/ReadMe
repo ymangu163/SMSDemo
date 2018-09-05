@@ -1,0 +1,28 @@
+您是否有过这样的经历：因注册某个应用或网站时暴露了手机号，接着垃圾短信、骚扰电话不断？那么本应用可以帮助到您。
+本应用使用卡商提供的号码，接收验证码，保护你的隐私，不要再把你的真实手机号码告诉第三方了。
+
+在要求你提供手机号码的服务上输入它。这样你就可以收到验证码，而无需提供真实的手机号码了：
+1. 获取一个的在线废弃号码
+2. 在那些要求你提供手机号码的服务上输入这个手机号码
+3. 点击“接收”，就可以在该手机上阅读短消息了
+
+保护你真实的手机以及你的隐私
+不用再提供你真实的手机号码了！我们保护你免受第三方和垃圾信息的骚扰。
+
+
+
+
+
+权限：
+ 允许联网
+    <uses-permission android:name="android.permission.INTERNET" />
+ 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ 获取wifi网络状态的信息
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+获取sd卡写的权限，用于文件上传和下载
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+允许读取手机状态
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />

@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Code Master</string>
+    <string name="user_name">User Name</string>
+    <string name="bmob_app">1c41b419c417a6e3b39b04704243c795</string>
+    <string name="user_pwd">Password</string>
+
+    <string name="login">Login</string>
+    <string name="no_register">No account yet, goto sign up</string>
+    <string name="input_pwd">Please enter password</string>
+
+    <string name="string_copied">copy</string>
+    <string name="register">Register</string>
+
+    <string name="tab_one">Get code</string>
+    <string name="tab_three">My</string>
+    <string name="verify_code">Verify Code：</string>
+    <string name="search_result">Search&#160;%d&#160;items：</string>
+    <string name="recharge_desc_1">ss</string>
+    <string name="recharge_desc_2">ss</string>
+    <string name="recharge_desc_3">ss</string>
+    <string name="recharge_desc_4">ss</string>
+
+    <string name="wait_msg_desc">Please copy the phone number to your project and get the verification code. Check the verification code 10 seconds later&#8230;</string>
+    <string name="wait_for_msg">Waiting for messages&#8230;</string>
+    <string name="user_info">Account information</string>
+
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="about_us_check_for_update">Detection of upgrade</string>
+    <string name="upgrade_desc">There is a new version：\n%s</string>
+
+
+</resources>

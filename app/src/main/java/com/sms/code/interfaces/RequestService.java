@@ -51,7 +51,7 @@ public interface RequestService {
     @POST("api/admin/shortmessage")
     @FormUrlEncoded
     Call<String> queryMsg(@Field("linpai") String token, @Field("itemid") int id,
-                                @Field("mobile") String mobile);
+                                @Field("mobile") String mobile, @Field("zuoz") int zuoz);
 
 
     @POST("api/admin/releaseadd")

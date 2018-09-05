@@ -48,7 +48,7 @@ import retrofit2.Response;
 public class CodeFragment extends Fragment implements View.OnClickListener {
 
     private final int REQUEST_CODE_SEARCH = 0x10;
-    private final int MSG_QUERY_VERFITY_CODE = 011;
+    private final int MSG_QUERY_VERFITY_CODE = 0x11;
 
     private View mRootView;
     private CheckBox mCheckBox;
@@ -270,7 +270,7 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
             return;
         }
         Call<String> project = ApiAgnet.getApiService().queryMsg(CommonSharePref.getInstance(AppContext.getContext()).getToken()
-                , mProjectBean.getId(), phoneStr);
+                , mProjectBean.getId(), phoneStr, 50801);
         project.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -318,7 +318,7 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
                 mMsgTv.setText("传入手机号错误或以释放 ");
                 return;
             }
-            mHandler.sendEmptyMessageDelayed(MSG_QUERY_VERFITY_CODE, 2000);
+            mHandler.sendEmptyMessageDelayed(MSG_QUERY_VERFITY_CODE, 5000);
             mMsgTv.setText("查询验证码 " + mGetMsgTimes + " 次");
 
         } else {
@@ -335,10 +335,9 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
     }
 
     private void parseMsgCode(String msg) {
-        String content = "【态链坊】您的验证码是7339。如非本人操作，请忽略本短信";
         String compile = ".*([0-9]{4,8}).*";
         Pattern pattern = Pattern.compile(compile);
-        Matcher matcher = pattern.matcher(content);
+        Matcher matcher = pattern.matcher(msg);
         if (matcher.find()) {
             if (matcher.groupCount() >= 1) {
                 String result = matcher.group(1);
@@ -360,8 +359,8 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
                 mGetMsgStartTime = 0;
                 mGetMsgTimes = 0;
                 mNumberTv.setText("");
-                mVerifyTv.setText(R.string.wait_for_msg);
-                mMsgTv.setText("");
+                mMsgTv.setText(R.string.wait_for_msg);
+                mVerifyTv.setText("");
             }
 
             @Override
@@ -393,8 +392,8 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
                 mGetMsgStartTime = 0;
                 mGetMsgTimes = 0;
                 mNumberTv.setText("");
-                mVerifyTv.setText(R.string.wait_for_msg);
-                mMsgTv.setText("");
+                mMsgTv.setText(R.string.wait_for_msg);
+                mVerifyTv.setText("");
             }
 
             @Override
