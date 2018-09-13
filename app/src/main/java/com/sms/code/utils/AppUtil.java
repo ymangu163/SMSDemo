@@ -7,6 +7,7 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -80,5 +81,20 @@ public class AppUtil {
         String current_time = sf.format(timeMillis);
 
         return sp_time.equals(current_time);
+    }
+
+    public static String getMd5(String _key){
+        byte[] hash;
+        try {
+            hash = MessageDigest.getInstance("MD5").digest(_key.getBytes("UTF-8"));
+            StringBuilder hex = new StringBuilder(hash.length * 2);
+            for (byte b : hash) {
+                if ((b & 0xFF) < 0x10) hex.append("0");
+                hex.append(Integer.toHexString(b & 0xFF));
+            }
+            return hex.toString();
+        }catch (Exception e) {
+            return null;
+        }
     }
 }

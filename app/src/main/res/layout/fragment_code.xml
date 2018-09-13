@@ -19,7 +19,9 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/shape_gray_corner"
         app:layout_constraintBottom_toBottomOf="@+id/code_header"
-        app:layout_constraintTop_toTopOf="@+id/code_header" />
+        app:layout_constraintTop_toTopOf="@+id/code_header"
+        android:importantForAccessibility="no"
+        />
 
     <ImageView
         android:id="@+id/code_search_iv"

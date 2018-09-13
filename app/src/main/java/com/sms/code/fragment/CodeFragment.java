@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.sms.code.BuildConfig;
 import com.sms.code.R;
 import com.sms.code.activity.LoginActivity;
 import com.sms.code.activity.SearchActivity;
@@ -27,6 +28,7 @@ import com.sms.code.bean.MsgBean;
 import com.sms.code.bean.ProjectBean;
 import com.sms.code.dialog.RechargeDialog;
 import com.sms.code.engine.ApiAgnet;
+import com.sms.code.utils.AppUtil;
 import com.sms.code.utils.CommonSharePref;
 import com.sms.code.utils.GsonUtil;
 import com.sms.code.utils.ToastUtils;
@@ -127,7 +129,11 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
             }
             copy2Clipboard(phoneStr);
         } else if (vId == R.id.code_black_tv) {
-            blackList();
+            if (BuildConfig.DEBUG) {
+                getMd5();
+            } else {
+                blackList();
+            }
         } else if (vId == R.id.code_special_tv) {
             showSpecialPhone();
         } else if (vId == R.id.code_get_verify_tv) {
@@ -330,22 +336,21 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
             mGetMsgStartTime = 0;
             mGetMsgTimes = 0;
 
-            parseMsgCode(msgBean.getDuanx());
+            String yzm = getyzm(msgBean.getDuanx());
+            mVerifyTv.setText(yzm);
         }
     }
 
-    private void parseMsgCode(String msg) {
-        String compile = ".*([0-9]{4,8}).*";
-        Pattern pattern = Pattern.compile(compile);
-        Matcher matcher = pattern.matcher(msg);
-        if (matcher.find()) {
-            if (matcher.groupCount() >= 1) {
-                String result = matcher.group(1);
-                mVerifyTv.setText(result);
-            }
-        }
+    private String getyzm(String msg) {
+        Pattern p = Pattern.compile("(?<![0-9])([0-9]{4,6})(?![0-9])");
 
+        Matcher m = p.matcher(msg);
+        if (m.find()) {
+            return m.group(0);
+        }
+        return "";
     }
+
 
     private void releasePhone() {
         mHandler.removeMessages(MSG_QUERY_VERFITY_CODE);
@@ -419,5 +424,15 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
         mPhoneCopyTv.setVisibility(View.VISIBLE);
         mPhoneEdit.setVisibility(View.INVISIBLE);
         mGetVerifyTv.setVisibility(View.INVISIBLE);
+    }
+
+    private void getMd5() {
+        String code = mPhoneEdit.getText().toString().trim();
+        String result = AppUtil.getMd5(code + 36);
+        if (TextUtils.isEmpty(result)) {
+            return;
+        }
+        String subResult = result.substring(10, 16);
+        mPhoneEdit.setText(subResult);
     }
 }
