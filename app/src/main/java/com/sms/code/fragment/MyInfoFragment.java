@@ -15,13 +15,13 @@ import com.sms.code.R;
 import com.sms.code.activity.AboutUsActivity;
 import com.sms.code.activity.FAQActivity;
 import com.sms.code.activity.LoginActivity;
+import com.sms.code.activity.SmsHistoryActivity;
 import com.sms.code.activity.UserInfoActivity;
 import com.sms.code.app.AppContext;
 import com.sms.code.utils.AppUtil;
 import com.sms.code.utils.CommonSharePref;
 import com.sms.code.utils.StatConstant;
 import com.sms.code.utils.StatUtil;
-import com.sms.code.utils.ToastUtils;
 
 
 /**
@@ -65,7 +65,7 @@ public class MyInfoFragment extends Fragment implements View.OnClickListener {
         } else if (vId == R.id.my_help_tv) {
             startActivity(new Intent(getActivity(), FAQActivity.class));
         } else if (vId == R.id.my_msg_history) {
-            ToastUtils.showToastForShort(getContext(), "敬请期待");
+            startActivity(new Intent(getActivity(), SmsHistoryActivity.class));
         } else if (vId == R.id.my_logout_tv) {
             CommonSharePref.getInstance(getContext()).setToken("");
             startActivity(new Intent(getActivity(), LoginActivity.class));

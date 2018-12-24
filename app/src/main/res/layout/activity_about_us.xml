@@ -89,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/info_item_height"
         style="@style/actionStyle"
-        android:text="服务微信：wonderfully365"
+        android:text="服务微信：toolmaster9527"
         android:textIsSelectable="true"
         android:gravity="center_vertical"
         />

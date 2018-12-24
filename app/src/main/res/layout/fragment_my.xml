@@ -35,7 +35,7 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="16dp"
-        android:text="接码记录"
+        android:text="@string/sms_history"
         android:textColor="@color/jike_text"
         android:textSize="16sp" />
 

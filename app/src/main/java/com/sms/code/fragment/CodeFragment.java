@@ -28,6 +28,7 @@ import com.sms.code.bean.MsgBean;
 import com.sms.code.bean.ProjectBean;
 import com.sms.code.dialog.RechargeDialog;
 import com.sms.code.engine.ApiAgnet;
+import com.sms.code.engine.DBManger;
 import com.sms.code.utils.AppUtil;
 import com.sms.code.utils.CommonSharePref;
 import com.sms.code.utils.GsonUtil;
@@ -332,12 +333,15 @@ public class CodeFragment extends Fragment implements View.OnClickListener {
             if (msgBean == null) {
                 return;
             }
+            msgBean.setTime(System.currentTimeMillis());
+            msgBean.setPhoneNumber(getPhoneStr());
             mMsgTv.setText(msgBean.getDuanx());
             mGetMsgStartTime = 0;
             mGetMsgTimes = 0;
 
             String yzm = getyzm(msgBean.getDuanx());
             mVerifyTv.setText(yzm);
+            DBManger.getInstance().saveSmsTb(msgBean);
         }
     }
 
