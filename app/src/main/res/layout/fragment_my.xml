@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_bg"
@@ -9,11 +10,41 @@
     <com.sms.code.views.ActionView
         android:layout_width="match_parent"
         android:layout_height="@dimen/action_height"
-        app:title="我&#160;的"
-        app:icon_visible="false"
         app:back_visible="false"
-        />
+        app:icon_visible="false"
+        app:title="我&#160;的" />
 
+    <RelativeLayout
+        android:id="@+id/my_ad_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/info_item_height"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/my_ad_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:textColor="@color/jike_text"
+            android:textSize="16sp"
+            tools:text="糖果助手" />
+
+        <ImageView
+            android:id="@+id/my_ad_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_recommend"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/my_mine_tv"
@@ -40,20 +71,6 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/my_red_packet"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/info_item_height"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:text="领红包"
-        android:textColor="@color/jike_text"
-        android:textSize="16sp"
-        android:visibility="gone"
-        />
-
-    <TextView
         android:id="@+id/my_help_tv"
         android:layout_width="match_parent"
         android:layout_height="@dimen/info_item_height"
@@ -76,8 +93,7 @@
         android:text="分         享"
         android:textColor="@color/jike_text"
         android:textSize="16sp"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/my_about_tv"

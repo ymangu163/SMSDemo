@@ -2,6 +2,7 @@ package com.sms.code.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sms.code.R;
@@ -18,10 +21,17 @@ import com.sms.code.activity.LoginActivity;
 import com.sms.code.activity.SmsHistoryActivity;
 import com.sms.code.activity.UserInfoActivity;
 import com.sms.code.app.AppContext;
+import com.sms.code.bean.HomeAd;
 import com.sms.code.utils.AppUtil;
 import com.sms.code.utils.CommonSharePref;
 import com.sms.code.utils.StatConstant;
 import com.sms.code.utils.StatUtil;
+
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 
 /**
@@ -33,22 +43,31 @@ import com.sms.code.utils.StatUtil;
 
 public class MyInfoFragment extends Fragment implements View.OnClickListener {
 
+    private RelativeLayout mAdLayout;
+    private TextView mAdNameTv;
+    private ImageView mAdIconIv;
+    private HomeAd mHomeAd;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        checkHomeAd();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my, container, false);
-        TextView redPacketTv = rootView.findViewById(R.id.my_red_packet);
         rootView.findViewById(R.id.my_help_tv).setOnClickListener(this);
         rootView.findViewById(R.id.my_about_tv).setOnClickListener(this);
         rootView.findViewById(R.id.my_mine_tv).setOnClickListener(this);
         rootView.findViewById(R.id.my_share_tv).setOnClickListener(this);
         rootView.findViewById(R.id.my_msg_history).setOnClickListener(this);
         rootView.findViewById(R.id.my_logout_tv).setOnClickListener(this);
-        redPacketTv.setOnClickListener(this);
-
-        if (AppUtil.isAppInstalled(AppContext.getContext(), "com.eg.android.AlipayGphone")) {
-            redPacketTv.setVisibility(View.VISIBLE);
-        }
+        mAdLayout = rootView.findViewById(R.id.my_ad_layout);
+        mAdNameTv = rootView.findViewById(R.id.my_ad_name);
+        mAdIconIv = rootView.findViewById(R.id.my_ad_icon);
+        mAdLayout.setOnClickListener(this);
         return rootView;
     }
 
@@ -71,8 +90,12 @@ public class MyInfoFragment extends Fragment implements View.OnClickListener {
             startActivity(new Intent(getActivity(), LoginActivity.class));
         } else if (vId == R.id.my_about_tv) {
             startActivity(new Intent(getActivity(), AboutUsActivity.class));
-        } else if (vId == R.id.my_red_packet) {
-            handleRedPacket();
+        } else if (vId == R.id.my_ad_layout) {
+            if (mHomeAd != null) {
+                Uri uri = Uri.parse(mHomeAd.getDownload());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
         }
 
     }
@@ -96,6 +119,40 @@ public class MyInfoFragment extends Fragment implements View.OnClickListener {
             context.startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void checkHomeAd() {
+        BmobQuery<HomeAd> query = new BmobQuery<HomeAd>();
+        query.order("-priority");
+        query.setCachePolicy(BmobQuery.CachePolicy.CACHE_ELSE_NETWORK);
+        query.findObjects(new FindListener<HomeAd>() {
+            @Override
+            public void done(List<HomeAd> list, BmobException e) {
+                if (e != null) {
+                    return;
+                }
+                parseHomeAd(list);
+            }
+        });
+    }
+
+    private void parseHomeAd(List<HomeAd> homeAds) {
+        if (homeAds.isEmpty()) {
+            return;
+        }
+        int currVerionCode = AppUtil.getVersionCode(AppContext.getContext());
+        for (HomeAd homeAd : homeAds) {
+            //对版本限制
+            if (homeAd.getVersioncode() > currVerionCode) {
+                continue;
+            }
+            if (AppUtil.isAppInstalled(AppContext.getContext(), homeAd.getPackageName())) {
+                continue;
+            }
+            mAdLayout.setVisibility(View.VISIBLE);
+            mAdNameTv.setText(homeAd.getName());
+            mHomeAd = homeAd;
         }
     }
 }

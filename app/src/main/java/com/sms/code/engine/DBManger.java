@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class DBManger {
 
-    private static final DBManger sDBManger = new DBManger();
+    private static volatile DBManger sDBManger;
 
     private DaoSession mDaoSession;
 
@@ -31,6 +31,13 @@ public class DBManger {
     }
 
     public static DBManger getInstance() {
+        if (sDBManger == null) {
+            synchronized (DBManger.class) {
+                if (sDBManger == null) {
+                    sDBManger = new DBManger();
+                }
+            }
+        }
         return sDBManger;
     }
 

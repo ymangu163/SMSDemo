@@ -7,6 +7,7 @@ import com.crashlytics.android.answers.Answers;
 import com.crashlytics.android.core.CrashlyticsCore;
 import com.sms.code.BuildConfig;
 import com.sms.code.R;
+import com.sms.code.engine.DBManger;
 
 import cn.bmob.v3.Bmob;
 import io.fabric.sdk.android.Fabric;
@@ -31,7 +32,7 @@ public class AppContext extends Application {
                 .build();
         Fabric.with(this,  new Answers(), crashlyticsKit);
         Bmob.initialize(this, getString(R.string.bmob_app));
-
+        DBManger.getInstance();
     }
 
     public static AppContext getContext() {
